@@ -1,0 +1,2 @@
+Frames_jpg/*.jpg filter=lfs diff=lfs merge=lfs -text
+THYZ_2025_oturum2/*.webp filter=lfs diff=lfs merge=lfs -text
