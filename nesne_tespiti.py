@@ -31,17 +31,18 @@ for img_path in os.listdir(img_folder_path):
 
     if len(result) > 0:
         
-        x1,y1,x2,y2,score,class_id = result[0] # liste yapısında olduğu için mauel [0] al
-        x1,y1,x2,y2,class_id = int(x1),int(y1),int(x2),int(y2),int(class_id)
+        for deneme in result:
+            x1,y1,x2,y2,score,class_id = deneme # liste yapısında olduğu için mauel [0] al
+            x1,y1,x2,y2,class_id = int(x1),int(y1),int(x2),int(y2),int(class_id)
 
-        if score > threshold:
-            cv2.rectangle(img, (x1,y1), (x2,y2), (255,0,0), 2)
-            class_name = detect_result.names[class_id]
-            score = score*100
+            if score > threshold:
+                cv2.rectangle(img, (x1,y1), (x2,y2), (255,0,0), 2)
+                class_name = detect_result.names[class_id]
+                score = score*100
 
-            text = f"{class_name}:%{score:.2f}"
+                text = f"{class_name}:%{score:.2f}"
 
-            cv2.putText(img, text, (x1,y1-10), font, 1, (0,0,255), 2, cv2.LINE_AA)
+                cv2.putText(img, text, (x1,y1-10), font, 1, (0,0,255), 2, cv2.LINE_AA)
 
     cv2.imshow("Yolo v11", img)
     key = cv2.waitKey(1)
